@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <title>Loan Calculator</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta name="description" content="Free loan calculator helps determine repayment plans, the interest cost, the amortization schedule of conventional amortized loans, deferred payment loans, and bonds.">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-regular.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-500.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-600.woff2" as="font" crossorigin type="font/woff2">
+    <link rel="preload" href="./assets/fonts/inter-v12-latin-800.woff2" as="font" crossorigin type="font/woff2">
+    <script type="text/javascript">
+        window._ = document.getElementById.bind(document);
+        window.$ = document.querySelector.bind(document);
+        window.$$ = document.querySelectorAll.bind(document);
+        window.defaultSystem = "imperial";
+        localStorage.setItem("theme", "light");
+    </script>
+    <link rel="stylesheet" href="./assets/css/main.min.css" />
+    <script src="./assets/js/all-calculators.js" defer></script>
+</head>
+<body style="background-color: transparent !important; min-height: 0 !important">
+
+<div style="width: 100%;">
+    <div style="width:350px;float:left;padding: 15px;">
+        <div class="calculator-settings">
+            <div class="calculator-setting" id="calculator_form">
+                <div class="calculator-content col">
+                	<div class="input-wrapper row">
+                		<label class="input col  ">
+                			<p class="input__title">Loan Amount</p>
+                			<div class="input-field row">
+                				<span class="input-field__hint">$</span>
+                				<input type="text" class="input-field__input" placeholder="0" id="loan_amount" value="100000" />
+                				
+                			</div>
+                			<div class="input-hints row">
+                					<button class="input-hints__hint" onclick="setValue('loan_amount', '25000')">25k</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_amount', '50000')">50k</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_amount', '100000')">100k</button>
+                			</div>
+                		</label>		<label class="input col  ">
+                			<p class="input__title">Interest Rate</p>
+                			<div class="input-field row">
+                				
+                				<input type="text" class="input-field__input" placeholder="0" id="interest_rate" value="6" />
+                				<span class="input-field__hint">%</span>
+                			</div>
+                			<div class="input-hints row">
+                					<button class="input-hints__hint" onclick="setValue('interest_rate', '1.5')">1.5</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('interest_rate', '2.5')">2.5</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('interest_rate', '3.5')">3.5</button>
+                			</div>
+                		</label>	</div>
+                	<div class="input-wrapper row">
+                		<label class="input col  ">
+                			<p class="input__title">Loan Term</p>
+                			<div class="input-field row">
+                				
+                				<input type="text" class="input-field__input" placeholder="0" id="loan_term_year" value="10" />
+                				<span class="input-field__hint">years</span>
+                			</div>
+                			<div class="input-hints row">
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '5')">5</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '10')">10</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '15')">15</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '20')">20</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '25')">25</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_year', '30')">30</button>
+                			</div>
+                		</label>		<label class="input col  ">
+                			
+                			<div class="input-field row">
+                				
+                				<input type="text" class="input-field__input" placeholder="0" id="loan_term_month" value="" />
+                				<span class="input-field__hint">months</span>
+                			</div>
+                			<div class="input-hints row">
+                					<button class="input-hints__hint" onclick="setValue('loan_term_month', '0')">0</button>
+                					<span class="input-hints__hint input-hints__hint--comma">,</span>
+                					<button class="input-hints__hint" onclick="setValue('loan_term_month', '6')">6</button>
+                			</div>
+                		</label>	</div>
+                </div>
+                <div class="calculator-content calculator-content--options calculator-content--gray col  "  >
+                	<div class="calculator-content-head row">
+                		<p class="calculator-content-head__title">Options</p>
+                		<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                	<path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.7071 7.29289L9.99999 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68341 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z" fill="#9CA3AF"></path>
+                </svg>
+                	</div>
+                		<div class="calculator-content-body col">
+                			<div class="input-wrapper row">
+                				<label class="input col ">
+                					<p class="input__title">Compound</p>
+                					<div class="dropdown-wrapper">
+                						<div class="input-field row " tabindex="0">
+                							<select class="input-field__text" onchange="toggleRelatedInputs(this)" id="compound">
+                									<option value="Monthly (APR)" >
+                									Monthly (APR)
+                									</option>
+                									<option value="Semi-Annually" >
+                									Semi-Annually
+                									</option>
+                									<option value="Quarterly" >
+                									Quarterly
+                									</option>
+                									<option value="Semi-Monthly" >
+                									Semi-Monthly
+                									</option>
+                									<option value="Biweekly" >
+                									Biweekly
+                									</option>
+                									<option value="Weekly" >
+                									Weekly
+                									</option>
+                									<option value="Daily" >
+                									Daily
+                									</option>
+                									<option value="Annually" >
+                									Annually
+                									</option>
+                									<option value="Continuously" >
+                									Continuously
+                									</option>
+                							</select>
+                						</div>
+                					</div>
+                				</label></div>
+                			<div class="input-wrapper row">
+                				<label class="input col ">
+                					<p class="input__title">Pay Back</p>
+                					<div class="dropdown-wrapper">
+                						<div class="input-field row " tabindex="0">
+                							<select class="input-field__text" onchange="toggleRelatedInputs(this)" id="pay_back">
+                									<option value="Every Day" >
+                									Every Day
+                									</option>
+                									<option value="Every Week" >
+                									Every Week
+                									</option>
+                									<option value="Every 2 Weeks" >
+                									Every 2 Weeks
+                									</option>
+                									<option value="Every Half Month" >
+                									Every Half Month
+                									</option>
+                									<option value="Every Month" selected>
+                									Every Month
+                									</option>
+                									<option value="Every Quarter" >
+                									Every Quarter
+                									</option>
+                									<option value="Every 6 Months" >
+                									Every 6 Months
+                									</option>
+                									<option value="Every Year" >
+                									Every Year
+                									</option>
+                							</select>
+                						</div>
+                					</div>
+                				</label></div>
+                		</div>
+                </div>
+                
+                <div class="calculator-content calculator-content--gray calculator-content--footer calculator-content--small row  " >
+                
+                
+                
+                
+                	<button class="button button--primary ml-auto" onclick="calculate(this)">Calculate</button>
+                </div>
+                
+                	<script type="text/javascript" src="./assets/js/chart.js" id="chartjs_script"></script>
+                
+                
+                
+                	<script type="text/javascript" src="./assets/js/calculator.js"></script>
+            </div>
+        </div>
+    </div>
+    <div style="float:left;padding: 15px; overflow: scroll;">
+        <div class="calculator-result calculator-result--error col" id="error-box">
+        	<div class="row">
+        		<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        	<path fill-rule="evenodd" clip-rule="evenodd" d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18ZM8.70711
+        						7.29289C8.31658 6.90237 7.68342 6.90237 7.29289 7.29289C6.90237 7.68342 6.90237 8.31658 7.29289 8.70711L8.58579 10L7.29289 11.2929C6.90237 11.6834 6.90237 12.3166 7.29289
+        						12.7071C7.68342 13.0976 8.31658 13.0976 8.70711 12.7071L10 11.4142L11.2929 12.7071C11.6834 13.0976 12.3166 13.0976 12.7071 12.7071C13.0976 12.3166 13.0976 11.6834 12.7071
+        						11.2929L11.4142 10L12.7071 8.70711C13.0976 8.31658 13.0976 7.68342 12.7071 7.29289C12.3166 6.90237 11.6834 6.90237 11.2929 7.29289L10 8.58579L8.70711 7.29289Z" fill="#F87171" class="dark:fill-red-200"></path>
+        </svg>
+        		<p class="calculator-error__title">There was an error with your calculation.</p>
+        	</div>
+        	<div class="col" id="error-list">
+        	</div>
+        </div>        <span id="calculator_result"><div class="calculator-result col">
+	<p class="table-cell table-cell--dark table-cell--only-title">Loan</p>
+	<div class="table-cell table-cell--age table-cell--only row">
+		<div class="col chart__text">
+			<p class="result-text" id="monthly-payment">Payment Every Month: $1,110.21</p>
+			<p class="result-text result-text--small-loan" id="total-payments">Total of 120 Payments: $133,224.60</p>
+			<p class="result-text result-text--small-loan" id="total-interest">Total Interest: $33,224.60</p>
+		</div>
+		<div class="chart-wrapper chart-wrapper--donut chart-wrapper--donut-row">
+			<canvas id="chartDonutSmall" class="chart chart--donut chart--donut-small" width="145px" height="145px"></canvas>
+			<div class="chart__donut-legend chart__donut-legend--col">
+				<div class="chart__donut-legend-item">
+					<div class="result-chart result-chart--sky"></div>
+					<p class="result-text result-text--small">Interest</p>
+				</div>
+				<div class="chart__donut-legend-item">
+					<div class="result-chart result-chart--purple"></div>
+					<p class="result-text result-text--small">Principal</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="chart-wrapper chart-wrapper--loan chart-wrapper--padding-horizontal">
+		<canvas id="chartLoan" class="chart chart--loan" height="524px"></canvas>
+		<div class="chart__legend" id="chart__legend">
+			<p class="result-text result-text--small">0 yr</p>
+			<p class="result-text result-text--small">5 yr</p>
+			<p class="result-text result-text--small">10 yr</p>
+		</div>
+	</div>
+	<div class="result-table__dialog">
+		<button class="result-table__open">
+			<p class="result-table__open-text">Amortization Schedule</p>
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+	<path fill-rule="evenodd" clip-rule="evenodd" d="M5.29289 7.29289C5.68342 6.90237 6.31658 6.90237 6.7071 7.29289L9.99999 10.5858L13.2929 7.29289C13.6834 6.90237 14.3166 6.90237 14.7071 7.29289C15.0976 7.68342 15.0976 8.31658 14.7071 8.70711L10.7071 12.7071C10.3166 13.0976 9.68341 13.0976 9.29289 12.7071L5.29289 8.70711C4.90237 8.31658 4.90237 7.68342 5.29289 7.29289Z" fill="#312E81"></path>
+</svg>
+		</button>
+		<div class="result-table__wrapper">
+			<table class="result-table">
+				<thead>
+					<tr>
+						<th class="indigo text-center">№</th>
+						<th class="indigo">BEGINNING BALANCE</th>
+						<th class="indigo">INTEREST</th>
+						<th class="indigo">PRINCIPAL</th>
+						<th class="indigo">ENDING BALANCE</th>
+					</tr>
+				</thead>
+				<tbody id="annual-results"><tr>
+					<td class="text-center">1</td>
+					<td>$100,000.00</td>
+					<td>$500.00</td>
+					<td>$610.21</td>
+					<td>$99,389.79</td>
+				</tr><tr>
+					<td class="text-center">2</td>
+					<td>$99,389.79</td>
+					<td>$496.95</td>
+					<td>$613.26</td>
+					<td>$98,776.54</td>
+				</tr><tr>
+					<td class="text-center">3</td>
+					<td>$98,776.54</td>
+					<td>$493.88</td>
+					<td>$616.32</td>
+					<td>$98,160.22</td>
+				</tr><tr>
+					<td class="text-center">4</td>
+					<td>$98,160.22</td>
+					<td>$490.80</td>
+					<td>$619.40</td>
+					<td>$97,540.81</td>
+				</tr><tr>
+					<td class="text-center">5</td>
+					<td>$97,540.81</td>
+					<td>$487.70</td>
+					<td>$622.50</td>
+					<td>$96,918.31</td>
+				</tr><tr>
+					<td class="text-center">6</td>
+					<td>$96,918.31</td>
+					<td>$484.59</td>
+					<td>$625.61</td>
+					<td>$96,292.70</td>
+				</tr><tr>
+					<td class="text-center">7</td>
+					<td>$96,292.70</td>
+					<td>$481.46</td>
+					<td>$628.74</td>
+					<td>$95,663.96</td>
+				</tr><tr>
+					<td class="text-center">8</td>
+					<td>$95,663.96</td>
+					<td>$478.32</td>
+					<td>$631.89</td>
+					<td>$95,032.07</td>
+				</tr><tr>
+					<td class="text-center">9</td>
+					<td>$95,032.07</td>
+					<td>$475.16</td>
+					<td>$635.04</td>
+					<td>$94,397.03</td>
+				</tr><tr>
+					<td class="text-center">10</td>
+					<td>$94,397.03</td>
+					<td>$471.99</td>
+					<td>$638.22</td>
+					<td>$93,758.81</td>
+				</tr><tr>
+					<td class="text-center">11</td>
+					<td>$93,758.81</td>
+					<td>$468.79</td>
+					<td>$641.41</td>
+					<td>$93,117.40</td>
+				</tr><tr>
+					<td class="text-center">12</td>
+					<td>$93,117.40</td>
+					<td>$465.59</td>
+					<td>$644.62</td>
+					<td>$92,472.78</td>
+				</tr><tr>
+					<td class="text-center">13</td>
+					<td>$92,472.78</td>
+					<td>$462.36</td>
+					<td>$647.84</td>
+					<td>$91,824.94</td>
+				</tr><tr>
+					<td class="text-center">14</td>
+					<td>$91,824.94</td>
+					<td>$459.12</td>
+					<td>$651.08</td>
+					<td>$91,173.86</td>
+				</tr><tr>
+					<td class="text-center">15</td>
+					<td>$91,173.86</td>
+					<td>$455.87</td>
+					<td>$654.34</td>
+					<td>$90,519.52</td>
+				</tr><tr>
+					<td class="text-center">16</td>
+					<td>$90,519.52</td>
+					<td>$452.60</td>
+					<td>$657.61</td>
+					<td>$89,861.91</td>
+				</tr><tr>
+					<td class="text-center">17</td>
+					<td>$89,861.91</td>
+					<td>$449.31</td>
+					<td>$660.90</td>
+					<td>$89,201.02</td>
+				</tr><tr>
+					<td class="text-center">18</td>
+					<td>$89,201.02</td>
+					<td>$446.01</td>
+					<td>$664.20</td>
+					<td>$88,536.82</td>
+				</tr><tr>
+					<td class="text-center">19</td>
+					<td>$88,536.82</td>
+					<td>$442.68</td>
+					<td>$667.52</td>
+					<td>$87,869.30</td>
+				</tr><tr>
+					<td class="text-center">20</td>
+					<td>$87,869.30</td>
+					<td>$439.35</td>
+					<td>$670.86</td>
+					<td>$87,198.44</td>
+				</tr><tr>
+					<td class="text-center">21</td>
+					<td>$87,198.44</td>
+					<td>$435.99</td>
+					<td>$674.21</td>
+					<td>$86,524.23</td>
+				</tr><tr>
+					<td class="text-center">22</td>
+					<td>$86,524.23</td>
+					<td>$432.62</td>
+					<td>$677.58</td>
+					<td>$85,846.64</td>
+				</tr><tr>
+					<td class="text-center">23</td>
+					<td>$85,846.64</td>
+					<td>$429.23</td>
+					<td>$680.97</td>
+					<td>$85,165.67</td>
+				</tr><tr>
+					<td class="text-center">24</td>
+					<td>$85,165.67</td>
+					<td>$425.83</td>
+					<td>$684.38</td>
+					<td>$84,481.29</td>
+				</tr><tr>
+					<td class="text-center">25</td>
+					<td>$84,481.29</td>
+					<td>$422.41</td>
+					<td>$687.80</td>
+					<td>$83,793.49</td>
+				</tr><tr>
+					<td class="text-center">26</td>
+					<td>$83,793.49</td>
+					<td>$418.97</td>
+					<td>$691.24</td>
+					<td>$83,102.26</td>
+				</tr><tr>
+					<td class="text-center">27</td>
+					<td>$83,102.26</td>
+					<td>$415.51</td>
+					<td>$694.69</td>
+					<td>$82,407.56</td>
+				</tr><tr>
+					<td class="text-center">28</td>
+					<td>$82,407.56</td>
+					<td>$412.04</td>
+					<td>$698.17</td>
+					<td>$81,709.40</td>
+				</tr><tr>
+					<td class="text-center">29</td>
+					<td>$81,709.40</td>
+					<td>$408.55</td>
+					<td>$701.66</td>
+					<td>$81,007.74</td>
+				</tr><tr>
+					<td class="text-center">30</td>
+					<td>$81,007.74</td>
+					<td>$405.04</td>
+					<td>$705.17</td>
+					<td>$80,302.57</td>
+				</tr><tr>
+					<td class="text-center">31</td>
+					<td>$80,302.57</td>
+					<td>$401.51</td>
+					<td>$708.69</td>
+					<td>$79,593.88</td>
+				</tr><tr>
+					<td class="text-center">32</td>
+					<td>$79,593.88</td>
+					<td>$397.97</td>
+					<td>$712.24</td>
+					<td>$78,881.64</td>
+				</tr><tr>
+					<td class="text-center">33</td>
+					<td>$78,881.64</td>
+					<td>$394.41</td>
+					<td>$715.80</td>
+					<td>$78,165.85</td>
+				</tr><tr>
+					<td class="text-center">34</td>
+					<td>$78,165.85</td>
+					<td>$390.83</td>
+					<td>$719.38</td>
+					<td>$77,446.47</td>
+				</tr><tr>
+					<td class="text-center">35</td>
+					<td>$77,446.47</td>
+					<td>$387.23</td>
+					<td>$722.97</td>
+					<td>$76,723.50</td>
+				</tr><tr>
+					<td class="text-center">36</td>
+					<td>$76,723.50</td>
+					<td>$383.62</td>
+					<td>$726.59</td>
+					<td>$75,996.91</td>
+				</tr><tr>
+					<td class="text-center">37</td>
+					<td>$75,996.91</td>
+					<td>$379.98</td>
+					<td>$730.22</td>
+					<td>$75,266.69</td>
+				</tr><tr>
+					<td class="text-center">38</td>
+					<td>$75,266.69</td>
+					<td>$376.33</td>
+					<td>$733.87</td>
+					<td>$74,532.82</td>
+				</tr><tr>
+					<td class="text-center">39</td>
+					<td>$74,532.82</td>
+					<td>$372.66</td>
+					<td>$737.54</td>
+					<td>$73,795.28</td>
+				</tr><tr>
+					<td class="text-center">40</td>
+					<td>$73,795.28</td>
+					<td>$368.98</td>
+					<td>$741.23</td>
+					<td>$73,054.05</td>
+				</tr><tr>
+					<td class="text-center">41</td>
+					<td>$73,054.05</td>
+					<td>$365.27</td>
+					<td>$744.93</td>
+					<td>$72,309.11</td>
+				</tr><tr>
+					<td class="text-center">42</td>
+					<td>$72,309.11</td>
+					<td>$361.55</td>
+					<td>$748.66</td>
+					<td>$71,560.46</td>
+				</tr><tr>
+					<td class="text-center">43</td>
+					<td>$71,560.46</td>
+					<td>$357.80</td>
+					<td>$752.40</td>
+					<td>$70,808.05</td>
+				</tr><tr>
+					<td class="text-center">44</td>
+					<td>$70,808.05</td>
+					<td>$354.04</td>
+					<td>$756.16</td>
+					<td>$70,051.89</td>
+				</tr><tr>
+					<td class="text-center">45</td>
+					<td>$70,051.89</td>
+					<td>$350.26</td>
+					<td>$759.95</td>
+					<td>$69,291.94</td>
+				</tr><tr>
+					<td class="text-center">46</td>
+					<td>$69,291.94</td>
+					<td>$346.46</td>
+					<td>$763.75</td>
+					<td>$68,528.20</td>
+				</tr><tr>
+					<td class="text-center">47</td>
+					<td>$68,528.20</td>
+					<td>$342.64</td>
+					<td>$767.56</td>
+					<td>$67,760.63</td>
+				</tr><tr>
+					<td class="text-center">48</td>
+					<td>$67,760.63</td>
+					<td>$338.80</td>
+					<td>$771.40</td>
+					<td>$66,989.23</td>
+				</tr><tr>
+					<td class="text-center">49</td>
+					<td>$66,989.23</td>
+					<td>$334.95</td>
+					<td>$775.26</td>
+					<td>$66,213.97</td>
+				</tr><tr>
+					<td class="text-center">50</td>
+					<td>$66,213.97</td>
+					<td>$331.07</td>
+					<td>$779.14</td>
+					<td>$65,434.84</td>
+				</tr><tr>
+					<td class="text-center">51</td>
+					<td>$65,434.84</td>
+					<td>$327.17</td>
+					<td>$783.03</td>
+					<td>$64,651.81</td>
+				</tr><tr>
+					<td class="text-center">52</td>
+					<td>$64,651.81</td>
+					<td>$323.26</td>
+					<td>$786.95</td>
+					<td>$63,864.86</td>
+				</tr><tr>
+					<td class="text-center">53</td>
+					<td>$63,864.86</td>
+					<td>$319.32</td>
+					<td>$790.88</td>
+					<td>$63,073.98</td>
+				</tr><tr>
+					<td class="text-center">54</td>
+					<td>$63,073.98</td>
+					<td>$315.37</td>
+					<td>$794.84</td>
+					<td>$62,279.14</td>
+				</tr><tr>
+					<td class="text-center">55</td>
+					<td>$62,279.14</td>
+					<td>$311.40</td>
+					<td>$798.81</td>
+					<td>$61,480.34</td>
+				</tr><tr>
+					<td class="text-center">56</td>
+					<td>$61,480.34</td>
+					<td>$307.40</td>
+					<td>$802.80</td>
+					<td>$60,677.53</td>
+				</tr><tr>
+					<td class="text-center">57</td>
+					<td>$60,677.53</td>
+					<td>$303.39</td>
+					<td>$806.82</td>
+					<td>$59,870.71</td>
+				</tr><tr>
+					<td class="text-center">58</td>
+					<td>$59,870.71</td>
+					<td>$299.35</td>
+					<td>$810.85</td>
+					<td>$59,059.86</td>
+				</tr><tr>
+					<td class="text-center">59</td>
+					<td>$59,059.86</td>
+					<td>$295.30</td>
+					<td>$814.91</td>
+					<td>$58,244.96</td>
+				</tr><tr>
+					<td class="text-center">60</td>
+					<td>$58,244.96</td>
+					<td>$291.22</td>
+					<td>$818.98</td>
+					<td>$57,425.98</td>
+				</tr><tr>
+					<td class="text-center">61</td>
+					<td>$57,425.98</td>
+					<td>$287.13</td>
+					<td>$823.08</td>
+					<td>$56,602.90</td>
+				</tr><tr>
+					<td class="text-center">62</td>
+					<td>$56,602.90</td>
+					<td>$283.01</td>
+					<td>$827.19</td>
+					<td>$55,775.71</td>
+				</tr><tr>
+					<td class="text-center">63</td>
+					<td>$55,775.71</td>
+					<td>$278.88</td>
+					<td>$831.33</td>
+					<td>$54,944.39</td>
+				</tr><tr>
+					<td class="text-center">64</td>
+					<td>$54,944.39</td>
+					<td>$274.72</td>
+					<td>$835.48</td>
+					<td>$54,108.90</td>
+				</tr><tr>
+					<td class="text-center">65</td>
+					<td>$54,108.90</td>
+					<td>$270.54</td>
+					<td>$839.66</td>
+					<td>$53,269.24</td>
+				</tr><tr>
+					<td class="text-center">66</td>
+					<td>$53,269.24</td>
+					<td>$266.35</td>
+					<td>$843.86</td>
+					<td>$52,425.38</td>
+				</tr><tr>
+					<td class="text-center">67</td>
+					<td>$52,425.38</td>
+					<td>$262.13</td>
+					<td>$848.08</td>
+					<td>$51,577.30</td>
+				</tr><tr>
+					<td class="text-center">68</td>
+					<td>$51,577.30</td>
+					<td>$257.89</td>
+					<td>$852.32</td>
+					<td>$50,724.99</td>
+				</tr><tr>
+					<td class="text-center">69</td>
+					<td>$50,724.99</td>
+					<td>$253.62</td>
+					<td>$856.58</td>
+					<td>$49,868.41</td>
+				</tr><tr>
+					<td class="text-center">70</td>
+					<td>$49,868.41</td>
+					<td>$249.34</td>
+					<td>$860.86</td>
+					<td>$49,007.54</td>
+				</tr><tr>
+					<td class="text-center">71</td>
+					<td>$49,007.54</td>
+					<td>$245.04</td>
+					<td>$865.17</td>
+					<td>$48,142.38</td>
+				</tr><tr>
+					<td class="text-center">72</td>
+					<td>$48,142.38</td>
+					<td>$240.71</td>
+					<td>$869.49</td>
+					<td>$47,272.88</td>
+				</tr><tr>
+					<td class="text-center">73</td>
+					<td>$47,272.88</td>
+					<td>$236.36</td>
+					<td>$873.84</td>
+					<td>$46,399.04</td>
+				</tr><tr>
+					<td class="text-center">74</td>
+					<td>$46,399.04</td>
+					<td>$232.00</td>
+					<td>$878.21</td>
+					<td>$45,520.83</td>
+				</tr><tr>
+					<td class="text-center">75</td>
+					<td>$45,520.83</td>
+					<td>$227.60</td>
+					<td>$882.60</td>
+					<td>$44,638.23</td>
+				</tr><tr>
+					<td class="text-center">76</td>
+					<td>$44,638.23</td>
+					<td>$223.19</td>
+					<td>$887.01</td>
+					<td>$43,751.22</td>
+				</tr><tr>
+					<td class="text-center">77</td>
+					<td>$43,751.22</td>
+					<td>$218.76</td>
+					<td>$891.45</td>
+					<td>$42,859.77</td>
+				</tr><tr>
+					<td class="text-center">78</td>
+					<td>$42,859.77</td>
+					<td>$214.30</td>
+					<td>$895.91</td>
+					<td>$41,963.86</td>
+				</tr><tr>
+					<td class="text-center">79</td>
+					<td>$41,963.86</td>
+					<td>$209.82</td>
+					<td>$900.39</td>
+					<td>$41,063.48</td>
+				</tr><tr>
+					<td class="text-center">80</td>
+					<td>$41,063.48</td>
+					<td>$205.32</td>
+					<td>$904.89</td>
+					<td>$40,158.59</td>
+				</tr><tr>
+					<td class="text-center">81</td>
+					<td>$40,158.59</td>
+					<td>$200.79</td>
+					<td>$909.41</td>
+					<td>$39,249.18</td>
+				</tr><tr>
+					<td class="text-center">82</td>
+					<td>$39,249.18</td>
+					<td>$196.25</td>
+					<td>$913.96</td>
+					<td>$38,335.22</td>
+				</tr><tr>
+					<td class="text-center">83</td>
+					<td>$38,335.22</td>
+					<td>$191.68</td>
+					<td>$918.53</td>
+					<td>$37,416.69</td>
+				</tr><tr>
+					<td class="text-center">84</td>
+					<td>$37,416.69</td>
+					<td>$187.08</td>
+					<td>$923.12</td>
+					<td>$36,493.57</td>
+				</tr><tr>
+					<td class="text-center">85</td>
+					<td>$36,493.57</td>
+					<td>$182.47</td>
+					<td>$927.74</td>
+					<td>$35,565.83</td>
+				</tr><tr>
+					<td class="text-center">86</td>
+					<td>$35,565.83</td>
+					<td>$177.83</td>
+					<td>$932.38</td>
+					<td>$34,633.45</td>
+				</tr><tr>
+					<td class="text-center">87</td>
+					<td>$34,633.45</td>
+					<td>$173.17</td>
+					<td>$937.04</td>
+					<td>$33,696.42</td>
+				</tr><tr>
+					<td class="text-center">88</td>
+					<td>$33,696.42</td>
+					<td>$168.48</td>
+					<td>$941.72</td>
+					<td>$32,754.69</td>
+				</tr><tr>
+					<td class="text-center">89</td>
+					<td>$32,754.69</td>
+					<td>$163.77</td>
+					<td>$946.43</td>
+					<td>$31,808.26</td>
+				</tr><tr>
+					<td class="text-center">90</td>
+					<td>$31,808.26</td>
+					<td>$159.04</td>
+					<td>$951.16</td>
+					<td>$30,857.10</td>
+				</tr><tr>
+					<td class="text-center">91</td>
+					<td>$30,857.10</td>
+					<td>$154.29</td>
+					<td>$955.92</td>
+					<td>$29,901.18</td>
+				</tr><tr>
+					<td class="text-center">92</td>
+					<td>$29,901.18</td>
+					<td>$149.51</td>
+					<td>$960.70</td>
+					<td>$28,940.48</td>
+				</tr><tr>
+					<td class="text-center">93</td>
+					<td>$28,940.48</td>
+					<td>$144.70</td>
+					<td>$965.50</td>
+					<td>$27,974.98</td>
+				</tr><tr>
+					<td class="text-center">94</td>
+					<td>$27,974.98</td>
+					<td>$139.87</td>
+					<td>$970.33</td>
+					<td>$27,004.65</td>
+				</tr><tr>
+					<td class="text-center">95</td>
+					<td>$27,004.65</td>
+					<td>$135.02</td>
+					<td>$975.18</td>
+					<td>$26,029.47</td>
+				</tr><tr>
+					<td class="text-center">96</td>
+					<td>$26,029.47</td>
+					<td>$130.15</td>
+					<td>$980.06</td>
+					<td>$25,049.41</td>
+				</tr><tr>
+					<td class="text-center">97</td>
+					<td>$25,049.41</td>
+					<td>$125.25</td>
+					<td>$984.96</td>
+					<td>$24,064.45</td>
+				</tr><tr>
+					<td class="text-center">98</td>
+					<td>$24,064.45</td>
+					<td>$120.32</td>
+					<td>$989.88</td>
+					<td>$23,074.57</td>
+				</tr><tr>
+					<td class="text-center">99</td>
+					<td>$23,074.57</td>
+					<td>$115.37</td>
+					<td>$994.83</td>
+					<td>$22,079.73</td>
+				</tr><tr>
+					<td class="text-center">100</td>
+					<td>$22,079.73</td>
+					<td>$110.40</td>
+					<td>$999.81</td>
+					<td>$21,079.93</td>
+				</tr><tr>
+					<td class="text-center">101</td>
+					<td>$21,079.93</td>
+					<td>$105.40</td>
+					<td>$1,004.81</td>
+					<td>$20,075.12</td>
+				</tr><tr>
+					<td class="text-center">102</td>
+					<td>$20,075.12</td>
+					<td>$100.38</td>
+					<td>$1,009.83</td>
+					<td>$19,065.29</td>
+				</tr><tr>
+					<td class="text-center">103</td>
+					<td>$19,065.29</td>
+					<td>$95.33</td>
+					<td>$1,014.88</td>
+					<td>$18,050.41</td>
+				</tr><tr>
+					<td class="text-center">104</td>
+					<td>$18,050.41</td>
+					<td>$90.25</td>
+					<td>$1,019.95</td>
+					<td>$17,030.46</td>
+				</tr><tr>
+					<td class="text-center">105</td>
+					<td>$17,030.46</td>
+					<td>$85.15</td>
+					<td>$1,025.05</td>
+					<td>$16,005.41</td>
+				</tr><tr>
+					<td class="text-center">106</td>
+					<td>$16,005.41</td>
+					<td>$80.03</td>
+					<td>$1,030.18</td>
+					<td>$14,975.23</td>
+				</tr><tr>
+					<td class="text-center">107</td>
+					<td>$14,975.23</td>
+					<td>$74.88</td>
+					<td>$1,035.33</td>
+					<td>$13,939.90</td>
+				</tr><tr>
+					<td class="text-center">108</td>
+					<td>$13,939.90</td>
+					<td>$69.70</td>
+					<td>$1,040.51</td>
+					<td>$12,899.40</td>
+				</tr><tr>
+					<td class="text-center">109</td>
+					<td>$12,899.40</td>
+					<td>$64.50</td>
+					<td>$1,045.71</td>
+					<td>$11,853.69</td>
+				</tr><tr>
+					<td class="text-center">110</td>
+					<td>$11,853.69</td>
+					<td>$59.27</td>
+					<td>$1,050.94</td>
+					<td>$10,802.75</td>
+				</tr><tr>
+					<td class="text-center">111</td>
+					<td>$10,802.75</td>
+					<td>$54.01</td>
+					<td>$1,056.19</td>
+					<td>$9,746.56</td>
+				</tr><tr>
+					<td class="text-center">112</td>
+					<td>$9,746.56</td>
+					<td>$48.73</td>
+					<td>$1,061.47</td>
+					<td>$8,685.09</td>
+				</tr><tr>
+					<td class="text-center">113</td>
+					<td>$8,685.09</td>
+					<td>$43.43</td>
+					<td>$1,066.78</td>
+					<td>$7,618.31</td>
+				</tr><tr>
+					<td class="text-center">114</td>
+					<td>$7,618.31</td>
+					<td>$38.09</td>
+					<td>$1,072.11</td>
+					<td>$6,546.20</td>
+				</tr><tr>
+					<td class="text-center">115</td>
+					<td>$6,546.20</td>
+					<td>$32.73</td>
+					<td>$1,077.47</td>
+					<td>$5,468.72</td>
+				</tr><tr>
+					<td class="text-center">116</td>
+					<td>$5,468.72</td>
+					<td>$27.34</td>
+					<td>$1,082.86</td>
+					<td>$4,385.86</td>
+				</tr><tr>
+					<td class="text-center">117</td>
+					<td>$4,385.86</td>
+					<td>$21.93</td>
+					<td>$1,088.28</td>
+					<td>$3,297.58</td>
+				</tr><tr>
+					<td class="text-center">118</td>
+					<td>$3,297.58</td>
+					<td>$16.49</td>
+					<td>$1,093.72</td>
+					<td>$2,203.87</td>
+				</tr><tr>
+					<td class="text-center">119</td>
+					<td>$2,203.87</td>
+					<td>$11.02</td>
+					<td>$1,099.19</td>
+					<td>$1,104.68</td>
+				</tr><tr>
+					<td class="text-center">120</td>
+					<td>$1,104.68</td>
+					<td>$5.52</td>
+					<td>$1,104.68</td>
+					<td>$0.00</td>
+				</tr></tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- <script src="./assets/js/chart.js"./assets/js/chart.js').then(e => switchTheme = e.default)
+</script> -->
+</span>
+    </div>
+</div>
+
+<script async src="./assets/js/lib/math.min.js"></script>
+<script defer src="./assets/js/functions.js"></script>
+
+</body>
+</html>
