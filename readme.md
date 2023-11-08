@@ -12,8 +12,7 @@ Free loan calculator helps determine repayment plans, the interest cost, the amo
 3. Activate the [Loan Calculator](https://www.calculator.io/loan-calculator/ "Loan Calculator Homepage") plugin through the "Plugins" menu in WordPress.
 
 ## Usage
-* Add the shortcode `[ci_loan_calculator]` to your page or post and configure default mortgage parameters.
-* If you are using widgets, just add the Loan Calculator to the sidebar through the `Appearance -> Widgets -> Loan Calculator` menu in WordPress.
+* Add the shortcode `[ci_loan_calculator]` to your page, post or sidebar.
 * Add the following code: `<?php display_ci_loan_calculator(); ?>` to your template where you would like the Loan Calculator to appear.
 
 ## Libraries in Use
