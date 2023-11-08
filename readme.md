@@ -13,7 +13,7 @@ Free loan calculator helps determine repayment plans, the interest cost, the amo
 
 ## Usage
 * Add the shortcode `[ci_loan_calculator]` to your page, post or sidebar.
-* Add the following code: `<?php display_ci_loan_calculator(); ?>` to your template where you would like the Loan Calculator to appear.
+* Or add the following code: `<?php display_ci_loan_calculator(); ?>` to your template where you would like the Loan Calculator to appear.
 
 ## Libraries in Use
 1. https://mathjs.org/
