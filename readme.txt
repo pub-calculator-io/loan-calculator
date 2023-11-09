@@ -13,6 +13,8 @@ Free loan calculator helps determine repayment plans, the interest cost, the amo
 
 Free loan calculator helps determine repayment plans, the interest cost, the amortization schedule of conventional amortized loans, deferred payment loans, and bonds.
 
+[Loan Calculator Homepage](https://www.calculator.io/loan-calculator/ "Loan Calculator Homepage")
+
 __Shortcode__
 
 Use the Loan Calculator shortcode:
