@@ -203,7 +203,13 @@
         	</div>
         	<div class="col" id="error-list">
         	</div>
-        </div>        <span id="calculator_result"><div class="calculator-result col">
+        </div>        <span id="calculator_result"><style>
+    #chartDonutSmall {
+        max-width: 200px;
+        max-height: 200px;
+    }
+</style>
+<div class="calculator-result col">
 	<p class="table-cell table-cell--dark table-cell--only-title">Loan</p>
 	<div class="table-cell table-cell--age table-cell--only row">
 		<div class="col chart__text">
@@ -212,7 +218,7 @@
 			<p class="result-text result-text--small-loan" id="total-interest">Total Interest: $33,224.60</p>
 		</div>
 		<div class="chart-wrapper chart-wrapper--donut chart-wrapper--donut-row">
-			<canvas id="chartDonutSmall" class="chart chart--donut chart--donut-small" width="145px" height="145px"></canvas>
+			<canvas id="chartDonutSmall" class="chart chart--donut chart--donut-small" width="200px" height="200px"></canvas>
 			<div class="chart__donut-legend chart__donut-legend--col">
 				<div class="chart__donut-legend-item">
 					<div class="result-chart result-chart--sky"></div>

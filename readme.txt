@@ -1,6 +1,6 @@
 === Loan Calculator by Calculator.iO ===
 Contributors: calculatorio
-Tags: 
+Tags: loan calculator, calculate loan, loan payment calculator, loan interest calculator, mortgage calculator, personal loan calculator, auto loan calculator, home loan calculator, loan repayment calculator, loan amount calculator
 Requires at least: 5.0
 Tested up to: 6.4.0
 Stable tag: 1.0.0
