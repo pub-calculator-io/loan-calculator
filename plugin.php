@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Loan Calculator by www.calculator.io
+Plugin Name: CI Loan calculator
 Plugin URI: https://www.calculator.io/loan-calculator/
 Description: Free loan calculator helps determine repayment plans, the interest cost, the amortization schedule of conventional amortized loans, deferred payment loans, and bonds.
 Version: 1.0.0
