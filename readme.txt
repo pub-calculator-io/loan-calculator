@@ -1,4 +1,4 @@
-=== Loan Calculator ===
+=== Loan Calculator by www.calculator.io ===
 Contributors: calculatorio
 Tags: loan calculator, calculate loan, loan payment calculator, loan interest calculator, mortgage calculator, personal loan calculator, auto loan calculator, home loan calculator, loan repayment calculator, loan amount calculator
 Requires at least: 5.0
