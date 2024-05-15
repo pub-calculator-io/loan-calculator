@@ -24,7 +24,6 @@ Add the following code to your template where you would like the Loan Calculator
 == Screenshots ==
 
 1. The Loan Calculator Input Form.
-2. The Loan Calculator Calculation Results.
 
 == Installation ==
 

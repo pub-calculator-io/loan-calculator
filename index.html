@@ -179,14 +179,17 @@
                 
                 
                 
-                	<button class="button button--primary ml-auto" onclick="calculate(this)">Calculate</button>
+                	<button class="button button--primary ml-auto" onclick="calculate(this); animateElements();" data-action="calculate" id="action-button">Calculate</button>
                 </div>
                 
-                	<script type="text/javascript" src="./assets/js/chart.js" id="chartjs_script"></script>
+                	<script type="text/javascript" src="./assets/js/lib/chartjs/chart.min.js" id="chartjs_lib" defer></script>
+                	<script type="text/javascript" src="./assets/js/chart.js" id="chartjs_script" defer></script>
                 
                 
                 
-                	<script type="text/javascript" src="./assets/js/calculator.js"></script>
+                
+                
+                	<script type="text/javascript" src="./assets/js/calculator.js" defer></script>
             </div>
         </div>
     </div>
@@ -201,8 +204,7 @@
         </svg>
         		<p class="calculator-error__title">There was an error with your calculation.</p>
         	</div>
-        	<div class="col" id="error-list">
-        	</div>
+        	<div class="col" id="error-list"></div>
         </div>        <span id="calculator_result"><style>
     #chartDonutSmall {
         max-width: 200px;
@@ -212,7 +214,7 @@
 <div class="calculator-result col">
 	<p class="table-cell table-cell--dark table-cell--only-title">Loan</p>
 	<div class="table-cell table-cell--age table-cell--only row">
-		<div class="col chart__text">
+		<div class="col chart__text animate">
 			<p class="result-text" id="monthly-payment">Payment Every Month: $1,110.21</p>
 			<p class="result-text result-text--small-loan" id="total-payments">Total of 120 Payments: $133,224.60</p>
 			<p class="result-text result-text--small-loan" id="total-interest">Total Interest: $33,224.60</p>
@@ -250,7 +252,7 @@
 			<table class="result-table">
 				<thead>
 					<tr>
-						<th class="indigo text-center">№</th>
+						<th class="indigo text-center">#</th>
 						<th class="indigo">BEGINNING BALANCE</th>
 						<th class="indigo">INTEREST</th>
 						<th class="indigo">PRINCIPAL</th>
@@ -982,9 +984,6 @@
 		</div>
 	</div>
 </div>
-
-<!-- <script src="./assets/js/chart.js"./assets/js/chart.js').then(e => switchTheme = e.default)
-</script> -->
 </span>
     </div>
 </div>

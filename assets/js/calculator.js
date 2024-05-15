@@ -8,7 +8,7 @@ function calculate(){
 	const payBack = input.get('pay_back').index().val();
 	const payBackText = input.get('pay_back').raw();
 	if(!loanTerm) {
-		input.error('loan_term_year', 'Please enter loan term');
+		input.error('loan_term_year', 'Enter the loan term');
 	}
 	if(!input.valid()) return;
 	interest = interest / 100;

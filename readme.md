@@ -3,7 +3,6 @@
 Free loan calculator helps determine repayment plans, the interest cost, the amortization schedule of conventional amortized loans, deferred payment loans, and bonds.
 
 ![Loan Calculator Input Form](/assets/images/screenshot-1.png "Loan Calculator Input Form")
-![Loan Calculator Calculation Results](/assets/images/screenshot-2.png "Loan Calculator Calculation Results")
 
 ## Installation
 
