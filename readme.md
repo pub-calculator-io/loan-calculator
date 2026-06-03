@@ -1,6 +1,6 @@
 # Loan Calculator Widget for WordPress
 
-Free loan calculator helps determine repayment plans, the interest cost, the amortization schedule of conventional amortized loans, deferred payment loans, and bonds.
+Estimate monthly payments, calculate total interest, and view full amortization schedules instantly with our free Loan Calculator. Perfect for any loan type.
 
 ![Loan Calculator Input Form](/assets/images/screenshot-1.png "Loan Calculator Input Form")
 
@@ -11,8 +11,8 @@ Free loan calculator helps determine repayment plans, the interest cost, the amo
 3. Activate the [Loan Calculator](https://www.calculator.io/loan-calculator/ "Loan Calculator Homepage") plugin through the "Plugins" menu in WordPress.
 
 ## Usage
-* Add the shortcode `[ci_loan_calculator]` to your page, post or sidebar.
-* Or add the following code: `<?php display_ci_loan_calculator(); ?>` to your template where you would like the Loan Calculator to appear.
+* Add the shortcode `[calcio_loan_calculator]` to your page, post or sidebar.
+* Or add the following code: `<?php display_calcio_loan_calculator(); ?>` to your template where you would like the Loan Calculator to appear.
 
 ## Libraries in Use
 1. https://mathjs.org/
